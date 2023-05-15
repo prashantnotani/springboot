@@ -21,4 +21,13 @@ steps:
     args: ["package", "-Dmaven.test.skip=true"]
   - name: gcr.io/cloud-builders/docker
     args: ["build", "-t", "us-west2-docker.pkg.dev/robotic-almanac-379406/spring-boot/taco-cloud", "--build-arg=WAR_FILE=target/taco-cloud-0.0.1-SNAPSHOT.war", "."]
+  - name: 'gcr.io/$PROJECT_ID/sonar-scanner:latest'
+    args:
+    - '-Dsonar.host.url=https://sonarcloud.io'
+    - '-Dsonar.login=6431f3503a0186b6b64ba537e4215cbc0f190bc5'
+    - '-Dsonar.projectKey=spring-boot'
+    - '-Dsonar.organization=spring-boot'
+    - '-Dsonar.sources=.'
 images: ["us-west2-docker.pkg.dev/robotic-almanac-379406/spring-boot/taco-cloud"]
+
+
