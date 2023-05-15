@@ -23,7 +23,8 @@ steps:
         '-Dsonar.projectKey=spring-boot' \
         '-Dsonar.projectName=spring-boot' \
         '-Dsonar.host.url=https://sonarcloud.io' \
-        '-Dsonar.qualitygate.wait=true'
+        '-Dsonar.qualitygate.wait=true' \
+        '-Dsonar.organization=spring-boot'
   - name: maven:3-eclipse-temurin-17-alpine
     entrypoint: mvn
     args: ["test"]
