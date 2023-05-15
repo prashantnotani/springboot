@@ -13,12 +13,21 @@
 # limitations under the License.
 # [START cloudbuild_maven]
 steps:
+  - name: 'maven:3.6.1-jdk-8'
+    entrypoint: 'bash'
+    args:
+      - -c
+      - |
+        unset MAVEN_CONFIG \
+        && mvn sonar:sonar -q -Dsonar.login=6431f3503a0186b6b64ba537e4215cbc0f190bc5 \
+        '-Dsonar.projectKey=spring-boot' \
+        '-Dsonar.projectName=spring-boot' \
+        '-Dsonar.host.url=https://sonarcloud.io' \
+        '-Dsonar.qualitygate.wait=true' \
+        'allow_failure: true'
   - name: maven:3-eclipse-temurin-17-alpine
     entrypoint: mvn
     args: ["test"]
-  - name: maven:3-eclipse-temurin-17-alpine
-    entrypoint: mvn
-    args: ["build","sonar:sonar -Dsonar.projectKey=spring-boot -Dsonar.organization=spring-boot -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=6431f3503a0186b6b64ba537e4215cbc0f190bc5"]
   - name: maven:3-eclipse-temurin-17-alpine
     entrypoint: mvn
     args: ["package", "-Dmaven.test.skip=true"]
