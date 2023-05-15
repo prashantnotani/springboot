@@ -13,7 +13,7 @@
 # limitations under the License.
 # [START cloudbuild_maven]
 steps:
-  - name: 'maven:3.6.1-jdk-8'
+  - name: maven:3-eclipse-temurin-17-alpine
     entrypoint: 'bash'
     args:
       - -c
